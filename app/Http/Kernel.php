@@ -35,6 +35,8 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            //TRAE EL MENU PARA EL USUARIO ACTUAL MenuMiddleware
+            'menuMiddleware' => \App\Http\Middleware\MenuMiddleware::class,
         ],
 
         'api' => [
@@ -59,5 +61,7 @@ class Kernel extends HttpKernel
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+         //PARA SABER SI ESTA LOGUEADO EL USUARIO
+        'loginMiddleware' => \App\Http\Middleware\LoginMiddleware::class,
     ];
 }
