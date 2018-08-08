@@ -31,5 +31,34 @@ Route::get('/', function () {
 	Route::get('logout', array('as'=>'logout', 'uses' => 'LoginController@doLogout')); //HACE LOGOUT
 
 
+
+//MODULES (ADMINISTRADOR DE MÓDULOS)
+	Route::get('modulos', array('as' => 'modulos','uses' => 'ModulesController@default'))->middleware('loginMiddleware');
+	Route::get('editModule', array('as' => 'modulos','uses' => 'ModulesController@editModule'))->middleware('loginMiddleware');
+	Route::post('addModule', array('as' => 'modulos','uses' => 'ModulesController@addModule'))->middleware('loginMiddleware'); 
+
+
 //HOME
 	Route::get('home', array('as' => 'home','uses' => 'HomeController@home'))->middleware('loginMiddleware'); //HOME
+
+//ROLES
+	Route::get('roles', array('as' => 'roles','uses' => 'RolesController@default'))->middleware('loginMiddleware'); 
+	Route::post('roles', array('as' => 'roles','uses' => 'RolesController@store'))->middleware('loginMiddleware'); 
+	Route::get('roles/{rol}/edit', array('as' => 'roles.edit','uses' => 'RolesController@formEdit'))->middleware('loginMiddleware');
+	Route::get('roles/{rol}/delete', array('as' => 'roles.delete','uses' => 'RolesController@destroy'))->middleware('loginMiddleware');
+	Route::post('saveEditRol', array('as' => 'roles.saveEdit','uses' => 'RolesController@update'))->middleware('loginMiddleware');
+
+
+
+//USUARIOS
+	Route::get('usuarios',  array('as' => 'usuarios','uses' => 'UsuariosController@default'))->middleware('loginMiddleware');
+	Route::post('usuarios', array('as' => 'usuarios','uses' => 'UsuariosController@store'))->middleware('loginMiddleware');
+	Route::get('usuarios/{idusuario}/disable', array('as' => 'usuarios.disable','uses' => 'UsuariosController@disable'))->middleware('loginMiddleware');
+	Route::get('usuarios/{idusuario}/enable', array('as' => 'usuarios.enable','uses' => 'UsuariosController@enable'))->middleware('loginMiddleware');
+	Route::get('usuarios/{idusuario}/edit', array('as' => 'usuarios.edit','uses' => 'UsuariosController@formEdit'))->middleware('loginMiddleware');
+	Route::post('saveEditUsuario', array('as' => 'usuarios.saveEdit','uses' => 'UsuariosController@update'))->middleware('loginMiddleware');
+
+
+//HANDSUP
+	Route::get('handsup', array('as' => 'handsup','uses' => 'HandsupController@default')); 
+	

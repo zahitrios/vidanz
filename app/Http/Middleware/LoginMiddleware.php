@@ -36,35 +36,37 @@ class LoginMiddleware
         $idUserMd5=session()->get('idUser');
         //$moduloActual=Route::getFacadeRoot()->current()->uri();
         $moduloActual=Route::getFacadeRoot()->current()->action["as"];
-        $moduloActual=strtoupper($moduloActual);
+        $moduloActual=strtolower($moduloActual);
 
 
         if($moduloActual=="" || $moduloActual=="home" || $moduloActual=="logout")
             return true;
 
         //VALIDO QUE LA RUTA SEA UN MODULO
-        // $queryDB = DB::table('modulos')
-        //         ->select('*')                
-        //         ->where('nombre','=',$moduloActual)
-        //         ->get();
+        $queryDB = DB::table('modulos')
+                ->select('*')                
+                ->where('nombre','=',$moduloActual)
+                ->get();
 
-        // if(count($queryDB)<=0)//ESTÁ ENTRANDO A UNA SUBRUTA QUE YA FUE VALIDADA
-        //     return true;
+        if(count($queryDB)<=0)//ESTÁ ENTRANDO A UNA SUBRUTA QUE YA FUE VALIDADA
+            return true;
 
 
-        // //HAGO EL QUERY PARA SABER SI EL USUARIO TIENE EL MODULO
-        // $queryDB = DB::table('rol_has_modulos')
-        //         ->select('*')                
-        //         ->join('tUser','rModulePosition.id_position','tUser.id_position')
-        //         ->where(DB::raw("md5(id_user)"),'=',$idUserMd5)                
-        //         ->where('id_module','=',$moduloActual)
-        //         ->get();
+        //HAGO EL QUERY PARA SABER SI EL USUARIO TIENE EL MODULO
+        $queryDB = DB::table('rol_has_modulos')
+                ->select('*')                
+                ->join('rol','idrol','rol_has_modulos.rol_idrol')
+                ->join('usuario','idrol','usuario.rol_idrol')
+                ->join('modulos','idmodulos','modulos_idmodulos')
+                ->where(DB::raw("md5(idusuario)"),'=',$idUserMd5)                
+                ->where('modulos.nombre','=',$moduloActual)
+                ->get();
         
-        // if(count($queryDB)>0) //SI TIENE PERMISOS
-        //     return true;
+        if(count($queryDB)>0) //SI TIENE PERMISOS
+            return true;
 
-        // //NO TIENE PERMISOS
-        // return false;
+        //NO TIENE PERMISOS
+        return false;
 
         return true;
 

@@ -140,13 +140,17 @@
               <header class="sidebar-header">
                 <!-- Sidebar Widget - Author-->
                 <div class="sidebar-widget author-widget">
-                  <div class="media"><a href="#" class="media-left"><img src="{{ Session::get('avatar') }}" class="img-responsive"></a>
+                  
+                  <div class="media">
+
                     <div class="media-body">
                       <div class="media-links"></div>
                       <div class="media-author">{{ Session::get('userName') }}</div>                      
                       <a href="/logout">Logout</a>
                     </div>
                   </div>
+
+
                 </div>
                 <!-- Sidebar Widget - Menu (slidedown)-->
                 <div class="sidebar-widget menu-widget">
@@ -182,7 +186,7 @@
                             <li>
                         @endif
                     
-                            <a href="/{{ strtolower($key) }}">
+                            <a href="/{{ strtolower($menu["label"]) }}">
                                 <span class="fa {{$menu["class"]}} "></span>
                                 <span class="sidebar-title">{{$menu["label"]}}</span>
                             </a>
