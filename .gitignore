@@ -17,3 +17,4 @@
 /web/bundles/
 .env
 /config/database.php
+initialScript.sql

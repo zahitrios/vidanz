@@ -32,7 +32,6 @@ class ModulesController extends BaseController
         );
 
         return redirect()->route('modulos');
-
     }
 
 
@@ -112,8 +111,6 @@ class ModulesController extends BaseController
         }
 
         $data["modulos"]=$modulos;
-
-    	
     	
     	//FIN DE ARMO EL ARREGLO DE DATOS QUE DEBO PASARLE A LA VISTA
         return view('modules')->with('data', $data);

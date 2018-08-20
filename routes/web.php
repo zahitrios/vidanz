@@ -34,8 +34,8 @@ Route::get('/', function () {
 
 //MODULES (ADMINISTRADOR DE MÓDULOS)
 	Route::get('modulos', array('as' => 'modulos','uses' => 'ModulesController@default'))->middleware('loginMiddleware');
-	Route::get('editModule', array('as' => 'modulos','uses' => 'ModulesController@editModule'))->middleware('loginMiddleware');
-	Route::post('addModule', array('as' => 'modulos','uses' => 'ModulesController@addModule'))->middleware('loginMiddleware'); 
+	Route::get('editModule', array('as' => 'editModulos','uses' => 'ModulesController@editModule'))->middleware('loginMiddleware');
+	Route::post('addModule', array('as' => 'addModulos','uses' => 'ModulesController@addModule'))->middleware('loginMiddleware'); 
 
 
 //HOME
@@ -57,6 +57,22 @@ Route::get('/', function () {
 	Route::get('usuarios/{idusuario}/enable', array('as' => 'usuarios.enable','uses' => 'UsuariosController@enable'))->middleware('loginMiddleware');
 	Route::get('usuarios/{idusuario}/edit', array('as' => 'usuarios.edit','uses' => 'UsuariosController@formEdit'))->middleware('loginMiddleware');
 	Route::post('saveEditUsuario', array('as' => 'usuarios.saveEdit','uses' => 'UsuariosController@update'))->middleware('loginMiddleware');
+
+
+//CLASES
+	Route::get('clases',  array('as' => 'clases','uses' => 'ClasesController@default'))->middleware('loginMiddleware');
+	Route::post('clases',  array('as' => 'clases','uses' => 'ClasesController@store'))->middleware('loginMiddleware');
+	Route::get('clases/{idclase}/edit', array('as' => 'clases.edit','uses' => 'ClasesController@formEdit'))->middleware('loginMiddleware');
+	Route::post('saveEditClase', array('as' => 'clases.saveEdit','uses' => 'ClasesController@update'))->middleware('loginMiddleware');
+
+
+//SUCURSALES
+	Route::get('sucursales',  array('as' => 'sucursales','uses' => 'SucursalesController@default'))->middleware('loginMiddleware');
+	Route::post('sucursales',  array('as' => 'sucursales','uses' => 'SucursalesController@store'))->middleware('loginMiddleware');
+	Route::get('sucursales/{idsucursal}/edit', array('as' => 'sucursales.edit','uses' => 'SucursalesController@formEdit'))->middleware('loginMiddleware');
+	Route::post('saveEditSucursal', array('as' => 'sucursales.saveEdit','uses' => 'SucursalesController@update'))->middleware('loginMiddleware');
+
+
 
 
 //HANDSUP
