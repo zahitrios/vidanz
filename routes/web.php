@@ -73,6 +73,14 @@ Route::get('/', function () {
 	Route::post('saveEditSucursal', array('as' => 'sucursales.saveEdit','uses' => 'SucursalesController@update'))->middleware('loginMiddleware');
 
 
+//LEADS
+	Route::get('leads',  array('as' => 'leads','uses' => 'LeadsController@default'))->middleware('loginMiddleware');
+	Route::post('leads',  array('as' => 'leads','uses' => 'LeadsController@store'))->middleware('loginMiddleware');
+	Route::get('leads/{idlead}/edit', array('as' => 'sucursales.edit','uses' => 'LeadsController@formEdit'))->middleware('loginMiddleware');
+	Route::get('leads/{idlead}/delete', array('as' => 'sucursales.delete','uses' => 'LeadsController@destroy'))->middleware('loginMiddleware');
+	Route::post('saveEditLead', array('as' => 'leads.saveEdit','uses' => 'LeadsController@update'))->middleware('loginMiddleware');
+
+
 
 
 //HANDSUP
