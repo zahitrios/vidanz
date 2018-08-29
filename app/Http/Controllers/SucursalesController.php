@@ -35,7 +35,7 @@ class SucursalesController extends Controller
 	    	$data["mensaje"]="Registro insertado correctamente";
 	    	$data["displayMensaje"]="block";
 
-	    	return view('sucursales')->with('data', $data);
+	    	return redirect('sucursales');
     	}
     	catch(\Exception $e){
 
@@ -45,7 +45,7 @@ class SucursalesController extends Controller
 	    	$data["mensaje"]="Ocurrió un error al insertar el registro".$e;
 	    	$data["displayMensaje"]="block";
 
-	    	return view('sucursales')->with('data', $data);
+	    	return redirect('sucursales');
 	    }
     }
 

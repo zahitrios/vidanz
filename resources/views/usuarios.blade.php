@@ -131,7 +131,7 @@
 					</td>
 					
 					<td align="center">
-						@if($usuario["active"]===1)
+						@if($usuario["active"]==1)
 							<i class="fas fa-user-check" style="color:#409ba8; font-size:14px;"></i>
 						@else
 							<i class="fas fa-user-alt-slash" style="color:#f44336; font-size:14px;"></i>
@@ -147,7 +147,7 @@
 								</a>
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-								@if($usuario["active"]===1)
+								@if($usuario["active"]==1)
 									<a href="/usuarios/{{ $usuario["idusuario"] }}/disable" title="Deshabilitar" >
 										<i class="fas fa-ban  botonEditarIcono"  aria-hidden="true"></i>
 									</a>

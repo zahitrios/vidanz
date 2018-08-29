@@ -22,8 +22,23 @@ class LeadsController extends Controller
     	return view('leads')->with('data', $data);    	
     }
 
-     public function index(){ //DEVUELVE TODO
-    	$leads = Lead::all()->sortByDesc("fechaRegistro");;
+    public function index(){ //DEVUELVE TODO
+    	$leads = Lead::all()->sortByDesc("fechaRegistro");
+
+        foreach($leads as $k => $lead){
+
+            //BUSCO SI EL LEAD YA ES ALUMNO
+            $alumno = DB::table('alumno')
+                ->select('*')                
+                ->where('lead_idlead','=',$lead->idlead)
+                ->get();
+
+            if(count($alumno)>0)            
+                $lead["alumno"]=1;
+            else
+                $lead["alumno"]=0;
+        }
+
     	return $leads;
     }
 
@@ -36,7 +51,7 @@ class LeadsController extends Controller
 	    	$data["mensaje"]="Lead insertado correctamente";
 	    	$data["displayMensaje"]="block";
 
-	    	return view('leads')->with('data', $data);
+	    	return redirect('leads');
     	}
     	catch(\Exception $e){
 
@@ -87,7 +102,7 @@ class LeadsController extends Controller
             $data["mensaje"]="Lead eliminado correctamente";
             $data["displayMensaje"]="block";
 
-            return view('leads')->with('data', $data);            
+            return redirect('leads');
         }
         catch(\Exception $e){
             

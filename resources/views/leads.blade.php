@@ -99,46 +99,72 @@
 
 
 	<!-- LA TABLA PRINCIPAL -->
-   <table class="table table-bordered table-hover table-striped mbn" >
-	  	<thead>
-	    	<tr class="system">
-	      		<th>Nombre</th>	      		
-	      		<th>Teléfono</th>
-	      		<th>Correo</th>
-	      		<th>Facebook</th>
-	      		<th>Fecha de registro</th>
-	      		<th>Notas</th>
-	    		<th>&nbsp;</th>
-	    	</tr>
-	  	</thead>
-	  	<tbody>
-			
-			@foreach($data["leads"] as $key => $lead)
-			   <tr>
-					<td>{{ $lead["nombre"] }}</td>
-					<td>{{ $lead["telefono"] }}</td>
-					<td>{{ $lead["correo"] }}</td>
-					<td>{{ $lead["facebook"] }}</td>
-					<td>{{ $lead["fechaRegistro"] }}</td>
-					<td>{{ $lead["notas"] }}</td>
-				
-					<td align="center">
+	<div class="panel-menu">
+        <input id="fooFilter" type="text" placeholder="Buscar..." class="form-control">
+    </div>
+    <div class="panel-body pn">
+					   <table data-page-navigation=".pagination" data-page-size="20" data-filter="#fooFilter" class="table table-responsive footable table-hover mb">
+						  	<thead>
+						    	<tr class="system">
+						      		<th>&nbsp;</th>
+						      		<th>Nombre</th>	      		
+						      		<th>Teléfono</th>
+						      		<th>Correo</th>
+						      		<th>Facebook</th>
+						      		<th>Fecha de registro</th>
+						      		<th>Notas</th>
+						      		<th>&nbsp;</th>						    		
+						    	</tr>
+						  	</thead>
+						  	<tbody>
+								
+								@foreach($data["leads"] as $key => $lead)
+								   <tr>
 
-						<a href="/leads/{{ $lead["idlead"] }}/edit" title="Editar datos">
-							<i class="fa fa-pencil-square-o botonEditarIcono"  aria-hidden="true"></i>
-						</a>
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<a href="/leads/{{ $lead["idlead"] }}/delete" >
-							<i class="fa fa-trash  botonEditarIcono"  aria-hidden="true"></i>
-						</a>
+								   		<td align="center">
+								   			@if($lead["alumno"]==0)
+												<a href="/alumnos/{{ $lead["idlead"] }}/associate" title="Convertir en alumno">
+													<i class="fas fa-graduation-cap botonEditarIcono" style="font-size:24px !important;"  aria-hidden="true"></i>
+												</a>
+											@else
+												<i class="fas fa-graduation-cap botonEditarIcono" style="font-size:24px !important; color:#409ba8 !important;"  aria-hidden="true"></i>
+											@endif
+										</td>
 
-					</td>
 
-				</tr>
-			@endforeach
+										<td>{{ $lead["nombre"] }}</td>
+										<td>{{ $lead["telefono"] }}</td>
+										<td>{{ $lead["correo"] }}</td>
+										<td>{{ $lead["facebook"] }}</td>
+										<td>{{ date('d-m-Y', strtotime($lead->fechaRegistro)) }} </td>
+										<td>{{ $lead["notas"] }}</td>
 
-		</tbody>
-	</table>
+										<td>
+											@if($lead["alumno"]==0)
+												<a href="/leads/{{ $lead["idlead"] }}/edit" title="Editar datos">
+													<i class="fa fa-pencil-square-o botonEditarIcono"  aria-hidden="true"></i>
+												</a>											
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+												<a href="/leads/{{ $lead["idlead"] }}/delete" >
+													<i class="fa fa-trash  botonEditarIcono"  aria-hidden="true"></i>
+												</a>
+											@endif
+										</td>
+
+									</tr>
+								@endforeach
+							</tbody>
+							<tfoot class="footer-menu">
+			                    <tr>
+			                      <td colspan="5">
+			                        <nav class="text-right">
+			                          <ul class="pagination hide-if-no-paging"></ul>
+			                        </nav>
+			                      </td>
+			                    </tr>
+			                </tfoot>
+						</table>
+	</div>
 
 @endsection
 

@@ -35,7 +35,7 @@ class ClasesController extends Controller
 	    	$data["mensaje"]="Registro insertado correctamente";
 	    	$data["displayMensaje"]="block";
 
-	    	return view('clases')->with('data', $data);
+	    	return redirect('clases');
     	}
     	catch(\Exception $e){
 

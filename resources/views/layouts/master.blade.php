@@ -11,10 +11,12 @@
     
     <link rel="stylesheet" type="text/css" href="/assets/plugins/css/fullcalendar.css">    
     <link rel="stylesheet" type="text/css" href="/assets/admin-tools/admin-forms/css/admin-forms.css">
+
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 
-
+    <link rel="stylesheet" type="text/css" href="/assets/plugins/css/footable.core.min.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Arimo:400,700%7CRoboto:400,300,500,700">
     <link rel="stylesheet" type="text/css" href="/assets/skin/default_skin/css/theme.css">
         <!--[if lt IE 10]>
             <div style="background: #212121; padding: 10px 0; box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3); clear: both; text-align:center; position: relative; z-index:1;"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img src="images/ie8-panel/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a></div>
@@ -335,16 +337,12 @@
     <script type="text/javascript">
       jQuery(document).ready(function () {
         "use strict";
-        
-        
+                
         // Init Theme Core
         Core.init();
-
-        $(document).ready(function () {         
-          $(window).trigger('resize');
-        });
         
-        
+        $('.footable').footable();
+        $(window).trigger('resize');
         
       });
     </script>

@@ -31,7 +31,6 @@ Route::get('/', function () {
 	Route::get('logout', array('as'=>'logout', 'uses' => 'LoginController@doLogout')); //HACE LOGOUT
 
 
-
 //MODULES (ADMINISTRADOR DE MÓDULOS)
 	Route::get('modulos', array('as' => 'modulos','uses' => 'ModulesController@default'))->middleware('loginMiddleware');
 	Route::get('editModule', array('as' => 'editModulos','uses' => 'ModulesController@editModule'))->middleware('loginMiddleware');
@@ -80,6 +79,13 @@ Route::get('/', function () {
 	Route::get('leads/{idlead}/delete', array('as' => 'sucursales.delete','uses' => 'LeadsController@destroy'))->middleware('loginMiddleware');
 	Route::post('saveEditLead', array('as' => 'leads.saveEdit','uses' => 'LeadsController@update'))->middleware('loginMiddleware');
 
+//ALUMNOS
+	Route::get('alumnos',  array('as' => 'alumnos','uses' => 'AlumnosController@default'))->middleware('loginMiddleware');
+	Route::post('alumnos',  array('as' => 'alumnos','uses' => 'AlumnosController@store'))->middleware('loginMiddleware');
+	Route::post('savealumno',  array('as' => 'alumnos.savealumno','uses' => 'AlumnosController@update'))->middleware('loginMiddleware');
+	Route::post('associateLeadAlumno',  array('as' => 'alumnos.saveAssociate','uses' => 'AlumnosController@store'))->middleware('loginMiddleware');
+	Route::get('alumnos/{idlead}/associate', array('as' => 'alumnos.associate','uses' => 'AlumnosController@associate'))->middleware('loginMiddleware');
+	Route::get('alumnos/{idalumno}/edit', array('as' => 'alumnos.edit','uses' => 'AlumnosController@formEdit'))->middleware('loginMiddleware');
 
 
 
